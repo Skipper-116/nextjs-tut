@@ -10,3 +10,9 @@ To build the app
 ```bash
 npm run build
 ```
+
+## API Routes
+Sample API Route
+```bash
+http://localhost:3000/api/hello
+```
