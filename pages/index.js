@@ -22,7 +22,7 @@ export default function Home({allPostsData}) {
       </Head>
       <section className={utilStyles.headingMd}>
         <p>Hello, I'm <b>Roy Chanunkha</b>. I'm a software engineer and somewhat anime fan. You can contact me on
-          <a href='https://twitter.com/skipper_116' target={"_blank"}>Twitter</a>
+          <a href='https://twitter.com/skipper_116' target={"_blank"}> Twitter</a>
         </p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
