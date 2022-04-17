@@ -24,6 +24,9 @@ export default function Home({allPostsData}) {
         <p>Hello, I'm <b>Roy Chanunkha</b>. I'm a software engineer and somewhat anime fan. You can contact me on
           <a href='https://twitter.com/skipper_116' target={"_blank"}> Twitter</a>
         </p>
+        <p>Just learnt how to use <b>React Redux</b>. You can follow this <Link href="/counter">
+          <a>link</a>
+        </Link> even you though you just to look at the code</p>
       </section>
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <h2 className={utilStyles.headingLg}>Blog</h2>
