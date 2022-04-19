@@ -1,24 +1,44 @@
 import Layout from "../components/layout";
 import { useRouter } from "next/router";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setAccessToken } from "../state/google/googleSlice";
+import { useGoogleAuth } from "react-gapi-auth2";
+import Events from '../components/events';
 
 function Event(){
-    const googleAuth = useSelector((state) => state.google.googleAuth);
-    const currentUser = useSelector((state) => state.google.currentUser);
+    const access_token = useSelector((state) => state.google.access_token);
+    const dispatch = useDispatch();
     const router = useRouter();
+    const googleAuth = useGoogleAuth();
 
-    console.log(googleAuth);
-    if(googleAuth && googleAuth.isSignedIn.get()){
-        console.log(currentUser.getAuthResponse().access_token);
+    if(access_token){
         return (
             <Layout>
-                <p>Welcome user {currentUser.getBasicProfile().getName()}</p>
-                <button onClick={() => {console.log('log out clicked'); googleAuth.signOut(); router.push('/signIn')}}>Sign Out</button>
+                <p>Below is a list of your google events</p>
+                <button onClick={() => {
+                    console.log('log out clicked');
+                    if(googleAuth.isSignedIn){
+                        googleAuth.googleAuth.signOut();
+                    }
+                     dispatch(setAccessToken(null));
+                     router.push('/signIn');
+                }}>Sign Out</button>
+                <p></p>
+                <Events />
             </Layout>
         )
     }
     else{
-        router.push('/signIn');
+        return(
+            <>
+                <p>Oh Oh seems like you jumped a step. To access this page you need to have signed in</p>
+                <button onClick={() => {
+                    router.push('/signIn');
+                }}>
+                    Sigin Page
+                </button>
+            </>
+        )
     }
 }
 
